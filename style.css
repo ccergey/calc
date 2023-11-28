@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('img/numbers.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc {
+    max-width: 520px;
+    height: 700px;
+    background-color: rgb(20 66 81);
+    border: 20px solid rgb(25, 107, 201);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    /* transform: perspective(300px) skewX(5deg) rotateY(10deg); */
+}
+
+.screen {
+    height: 100px;
+    padding: 20px;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 50px;
+    font-weight: normal;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.string-status {
+    color: #bfbfbf;
+    text-align: right;
+    font-size: 12px;
+    height: 15px;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.buttons {
+    margin-top: 50px;
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+    gap: 5px;
+    grid-template-areas: ". . . reset reset" ". . . back back" ". . . . ." ". . . . ." ". . . result result";
+}
+
+.btn {
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 6px double#7d7b7b;
+    background-color: #d1e4f6;
+    border-radius: 10px;
+    font-size: 30px;
+    box-shadow: inset 0 0 5px #000;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.btn[data-type="number"] {
+    background-color: #7fbaf1;
+    color: #063b8d;
+    border-color: #1e29d2;
+}
+
+.btn:hover {
+    background-color: #c2ddf5;
+    border-color: #d1e4f6;
+    ;
+}
+
+.back {
+    grid-area: back;
+    width: 165px;
+}
+
+.reset {
+    grid-area: reset;
+    width: 165px;
+}
+
+.result {
+    grid-area: result;
+    width: 165px;
+}
+
+@media (max-width: 500px) {
+    .calc {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .btn {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+    .back,
+    .reset,
+    .result {
+        width: 105px;
+    }
+    .screen {
+        font-size: 30px;
+    }
+}
