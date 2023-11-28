@@ -24,7 +24,7 @@ body {
     max-width: 520px;
     height: 700px;
     background-color: rgb(20 66 81);
-    border: 20px solid rgb(25, 107, 201);
+    border: 10px solid rgb(25, 107, 201);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
     padding: 30px;

@@ -5,6 +5,7 @@ let num = 0;
 let operand = '';
 let operandFlag = false;
 let result = false;
+let dotFlag = false;
 let res = 0;
 let txt = '';
 let memory = 0;
@@ -50,6 +51,7 @@ btns.forEach(item => {
                 setDataScreen(0);
                 operandFlag = false;
                 result = false;
+                dotFlag = false;
                 num = 0;
                 break;
 
@@ -67,6 +69,7 @@ btns.forEach(item => {
                 operand = item.innerHTML;
 
                 operandFlag = true;
+                dotFlag = false;
                 break;
 
             case 'result':
@@ -93,24 +96,19 @@ btns.forEach(item => {
                             res = 'ERROR!!';
                         } else {
                             res = num1 / num2;
-                            // if ((res % 1 !== 0) && (String(res).length > maxLenghtScreen)) {
-                            //      res = String(res).substring(0, maxLenghtScreen);
-                            // }
                         }
-
                         break;
                 }
-                res = +res.toFixed(8);
-                console.log(res);
+                res = +res.toFixed(10);
 
                 if ((String(res).length > maxLenghtScreen) && (operand != '/')) {
-                    console.log(String(res).length, num1, num2, res);
                     res = 'ERROR!!!';
                 }
+
                 setDataScreen(res);
                 operandFlag = false;
                 num = 0;
-                //result = false;
+                dotFlag = false;
                 break;
 
             case 'change':
@@ -122,7 +120,11 @@ btns.forEach(item => {
                 break;
 
             case 'dot':
-                let dot = item.innerHTML;
+                if (dotFlag === true) {
+                    return;
+                }
+
+                dotFlag = true;
                 let screenTxt = getDataScreen();
 
                 txt = screenTxt + '.';
