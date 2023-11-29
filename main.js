@@ -1,5 +1,6 @@
 let btns = document.querySelectorAll('.btn');
 let screen = document.querySelector('.screen');
+let stringStatus = document.querySelector('.string-status');
 
 let num = 0;
 let operand = '';
@@ -23,24 +24,30 @@ btns.forEach(item => {
 
                 if (screenText === 'ERROR')
                     return;
+                stringStatus.textContent = '';
 
                 if (result == true) {
                     screenText = '';
                     result = false;
+                    console.log(1);
                 }
 
                 let screenInt = +screenText;
 
-                if (screenInt === 0) {
+                if (screenInt === 0 && screenText !== '0.') {
                     screenText = '';
+                    console.log(2);
                 }
+
 
                 if (operandFlag) {
                     num = screenInt;
                     operandFlag = false;
                     txt = valBtn;
+                    console.log(3);
                 } else {
                     txt = screenText + valBtn;
+                    console.log(4);
                 }
 
                 setDataScreen(txt);
@@ -53,6 +60,7 @@ btns.forEach(item => {
                 result = false;
                 dotFlag = false;
                 num = 0;
+                stringStatus.textContent = '';
                 break;
 
             case 'back':
@@ -109,6 +117,12 @@ btns.forEach(item => {
                 operandFlag = false;
                 num = 0;
                 dotFlag = false;
+                if (num2 < 0) {
+                    num2 = `(${num2})`
+                }
+                let status = `${num1}${operand}${num2}=${res}`;
+                stringStatus.textContent = status;
+
                 break;
 
             case 'change':
@@ -120,7 +134,7 @@ btns.forEach(item => {
                 break;
 
             case 'dot':
-                if (dotFlag === true) {
+                if (dotFlag === true || result === true) {
                     return;
                 }
 
