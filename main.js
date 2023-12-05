@@ -16,7 +16,7 @@ const maxLenghtScreen = 13;
 btns.forEach(item => {
     item.addEventListener('click', (e) => {
         let type = item.dataset.type;
-        // console.log(type);
+
         switch (type) {
             case 'number':
                 let valBtn = item.innerHTML;
@@ -29,25 +29,20 @@ btns.forEach(item => {
                 if (result == true) {
                     screenText = '';
                     result = false;
-                    console.log(1);
                 }
 
                 let screenInt = +screenText;
 
                 if (screenInt === 0 && screenText !== '0.') {
                     screenText = '';
-                    console.log(2);
                 }
-
 
                 if (operandFlag) {
                     num = screenInt;
                     operandFlag = false;
                     txt = valBtn;
-                    console.log(3);
                 } else {
                     txt = screenText + valBtn;
-                    console.log(4);
                 }
 
                 setDataScreen(txt);
@@ -101,13 +96,15 @@ btns.forEach(item => {
                         break;
                     case '/':
                         if (num2 === 0) {
-                            res = 'ERROR!!';
+                            res = 'ERROR!!!';
                         } else {
                             res = num1 / num2;
                         }
                         break;
                 }
-                res = +res.toFixed(10);
+
+                if (res !== 'ERROR!!!')
+                    res = +res.toFixed(10);
 
                 if ((String(res).length > maxLenghtScreen) && (operand != '/')) {
                     res = 'ERROR!!!';
@@ -117,10 +114,11 @@ btns.forEach(item => {
                 operandFlag = false;
                 num = 0;
                 dotFlag = false;
+
                 if (num2 < 0) {
                     num2 = `(${num2})`
                 }
-                let status = `${num1}${operand}${num2}=${res}`;
+                let status = `${num1} ${operand} ${num2} = ${res}`;
                 stringStatus.textContent = status;
 
                 break;
@@ -146,9 +144,9 @@ btns.forEach(item => {
 
                 break;
                 /*            
-                            case 'memory':
+                case 'memory':
 
-                                break;
+                    break;
                 */
             default:
                 txt = 'ERROR!';
